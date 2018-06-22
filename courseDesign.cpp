@@ -26,13 +26,13 @@ struct Worker_Salary           /*职工各项数据类型*/
 {
     char ID[10];
     char name[10];
-	float p_salary;
+    float p_salary;
     float p_salary1;
-	float p_salary2;
-	float p_salary3;
-	float s_salary;
-	float tax;
-	float real_salary;
+    float p_salary2;
+    float p_salary3;
+    float s_salary;
+    float tax;
+    float real_salary;
 };
 /*************************************************
 Function:    read                              // 函数名称
@@ -46,16 +46,18 @@ Return:职工数据的个数                          // 函数返回值的说明
 *************************************************/
 int read(Worker_Salary ws[])   
 {
-	FILE *fp;
-	if(( fp = fopen("gz.dat","rb"))==NULL){
-	    printf("文件不存在或出错！！");
-		getchar();
-		exit(-1);
+    FILE *fp;
+    if(( fp = fopen("gz.dat","rb"))==NULL){
+        printf("文件不存在或出错！！");
+        getchar();
+        exit(-1);
 	}
+
 	int num = 0 ;
-	while(fread(&ws[num],sizeof(struct Worker_Salary),1,fp))
+
+    while(fread(&ws[num],sizeof(struct Worker_Salary),1,fp))
 	{
-	    num = num + 1;
+        num = num + 1;
 	};
    fclose(fp);
    return num;
@@ -75,10 +77,10 @@ void write(Worker_Salary ws[],int num)
     FILE *fp;
     if((fp=fopen("gz.dat","wb"))==NULL)
 	{
-	    cout<<"文件不存在或出错！！";
-	    getchar();
-	    exit(-1);
-	}
+        cout<<"文件不存在或出错！！";
+        getchar();
+        exit(-1);
+    }
     fwrite(ws,sizeof(struct Worker_Salary),num,fp);
     fclose(fp);
     cout<<"保存成功!!!!!"<<endl;
@@ -94,7 +96,8 @@ Output:                                        // 对输出参数的说明。
 Return:无                                      // 函数返回值的说明
 *************************************************/
 void list(Worker_Salary ws[],int num)
-{   int i;
+{   
+    int i;
     for(i=0;i<num;i++)
 	{
         cout<<"工号："<<ws[i].ID<<"  |  "<<"姓名："<<ws[i].name<<"  |  "<<"岗位工资："<<ws[i].p_salary<<"  |  ";
@@ -115,20 +118,21 @@ Output:                                        // 对输出参数的说明。
 Return:无                                      // 函数返回值的说明
 *************************************************/
 void find(Worker_Salary ws[],int num,char id[]) 
-{   int i;
-	for( i = 0 ;i<num;i++)
+{   
+    int i;
+    for( i = 0 ;i<num;i++)
 	{
         if(strcmp(ws[i].ID,id)==0)
 		{
-		    cout<<"工号："<<ws[i].ID<<"  |  "<<"姓名："<<ws[i].name<<"  |  "<<"岗位工资："<<ws[i].p_salary<<"  |  ";
-			cout<<"薪级工资："<<ws[i].p_salary1<<"  |  "<<'\n'<<"职务津贴："<<ws[i].p_salary2<<"  |  ";
-			cout<<"绩效工资："<<ws[i].p_salary3<<"  |  "<<"应发工资："<<ws[i].s_salary<<"  |  "<<'\n';
-			cout<<"个人所得税："<<ws[i].tax<<"  |  "<<"实发工资："<<ws[i].real_salary<<"  |"<<endl;
-			cout<<"________________________________________________________________________________"<<endl;
-			return;
+            cout<<"工号："<<ws[i].ID<<"  |  "<<"姓名："<<ws[i].name<<"  |  "<<"岗位工资："<<ws[i].p_salary<<"  |  ";
+            cout<<"薪级工资："<<ws[i].p_salary1<<"  |  "<<'\n'<<"职务津贴："<<ws[i].p_salary2<<"  |  ";
+            cout<<"绩效工资："<<ws[i].p_salary3<<"  |  "<<"应发工资："<<ws[i].s_salary<<"  |  "<<'\n';
+            cout<<"个人所得税："<<ws[i].tax<<"  |  "<<"实发工资："<<ws[i].real_salary<<"  |"<<endl;
+            cout<<"________________________________________________________________________________"<<endl;
+            return;
 		}
 	}
-	cout<<"不存在此工号的职工,请确认你所输入的工号!!!"<<endl;
+    cout<<"不存在此工号的职工,请确认你所输入的工号!!!"<<endl;
 }
 /*************************************************
 Function:    grsds                             // 函数名称
@@ -142,52 +146,52 @@ Return:无                                      // 函数返回值的说明
 *************************************************/
 void grsds(Worker_Salary *ws)
 {   
-	ws->s_salary=ws->p_salary+ws->p_salary1+ws->p_salary2+ws->p_salary3;
-	if(ws->s_salary<500)
+    ws->s_salary=ws->p_salary+ws->p_salary1+ws->p_salary2+ws->p_salary3;
+    if(ws->s_salary<500)
 	{
-		ws->tax=ws->s_salary*0.05;
+        ws->tax=ws->s_salary*0.05;
 	}
-
-	else if(ws->s_salary<2000)
+	
+    else if(ws->s_salary<2000)
 	{
-		ws->tax=500*0.05+(ws->s_salary-500)*0.1;
+        ws->tax=500*0.05+(ws->s_salary-500)*0.1;
 	}
 
     else if(ws->s_salary<5000)
 	{
-		ws->tax=500*0.05+1500*0.1+(ws->s_salary-2000)*0.15;
+        ws->tax=500*0.05+1500*0.1+(ws->s_salary-2000)*0.15;
 	}
 
-	else if(ws->s_salary<20000)
+    else if(ws->s_salary<20000)
 	{
-		ws->tax=500*0.05+1500*0.1+3000*0.15+(ws->s_salary-5000)*0.20;
+        ws->tax=500*0.05+1500*0.1+3000*0.15+(ws->s_salary-5000)*0.20;
 	}
 
-	else if(ws->s_salary<40000)
+    else if(ws->s_salary<40000)
 	{	
-		ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+(ws->s_salary-20000)*0.25;
+        ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+(ws->s_salary-20000)*0.25;
 	}
 
-	else if(ws->s_salary<60000)
+    else if(ws->s_salary<60000)
 	{
-		ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+20000*0.25+(ws->s_salary-40000)*0.3;
+        ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+20000*0.25+(ws->s_salary-40000)*0.3;
 	}
 
-	else if(ws->s_salary<80000)
+    else if(ws->s_salary<80000)
 	{	
-		ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+20000*0.25+20000*0.30+(ws->s_salary-60000)*0.35;
+        ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+20000*0.25+20000*0.30+(ws->s_salary-60000)*0.35;
 	}
 
-	else if(ws->s_salary<100000)
+    else if(ws->s_salary<100000)
 	{
-		ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+20000*0.25+20000*0.30+20000*0.35+(ws->s_salary-60000)*0.40;
+        ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+20000*0.25+20000*0.30+20000*0.35+(ws->s_salary-60000)*0.40;
 	}
 
-	else
+    else
 	{
-		ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+20000*0.25+20000*0.30+20000*0.35+20000*0.4+(ws->s_salary-80000)*0.45;
+        ws->tax=500*0.05+1500*0.1+3000*0.15+15000*0.2+20000*0.25+20000*0.30+20000*0.35+20000*0.4+(ws->s_salary-80000)*0.45;
 	}
-	ws->real_salary=ws->s_salary-ws->tax;	
+    ws->real_salary=ws->s_salary-ws->tax;	
 }
 /*************************************************
 Function:    modify                            // 函数名称
@@ -200,30 +204,31 @@ Output:                                        // 对输出参数的说明。
 Return:无                                      // 函数返回值的说明
 *************************************************/
 void modify(Worker_Salary ws[],int num,char id[])
-{   int i;
+{   
+    int i;
     for( i=0;i<num;i++)
 	{
-	    if(strcmp(ws[i].ID,id)==0)
+        if(strcmp(ws[i].ID,id)==0)
 		{
-		    cout<<"请重新输入该职工的基本信息：";
-		    cout<<"请输入职工工号：";
-		    cin>>ws[i].ID;
-		    cout<<"请输入职工姓名：";
-		    cin>>ws[i].name;
-		    cout<<"请输入职工岗位工资：";
-		    cin>>ws[i].p_salary;
-		    cout<<"请输入职工薪级工资：";
-		    cin>>ws[i].p_salary1;
-		    cout<<"请输入职工职务津贴：";
-		    cin>>ws[i].p_salary2;
-		    cout<<"请输入职工绩效工资：";
-		    cin>>ws[i].p_salary3;
-		    grsds(&ws[i]);
-		    cout<<"修改成功!!!!!!"<<endl;
-		    return;
+            cout<<"请重新输入该职工的基本信息：";
+            cout<<"请输入职工工号：";
+            cin>>ws[i].ID;
+            cout<<"请输入职工姓名：";
+            cin>>ws[i].name;
+            cout<<"请输入职工岗位工资：";
+            cin>>ws[i].p_salary;
+            cout<<"请输入职工薪级工资：";
+            cin>>ws[i].p_salary1;
+            cout<<"请输入职工职务津贴：";
+            cin>>ws[i].p_salary2;
+            cout<<"请输入职工绩效工资：";
+            cin>>ws[i].p_salary3;
+            grsds(&ws[i]);
+            cout<<"修改成功!!!!!!"<<endl;
+            return;
 		}
 	}
-	cout<<"不存在此工号的职工,请确认你所输入的工号!!!"<<endl;
+    cout<<"不存在此工号的职工,请确认你所输入的工号!!!"<<endl;
 }
 /*************************************************
 Function:    del                               // 函数名称
@@ -238,34 +243,34 @@ Return:无                                      // 函数返回值的说明
 void del(Worker_Salary ws[],int &num,char id[])
 {  
     int i;
-	char code;
-	for( i=0; i < num ; i++)
+    char code;
+    for( i=0; i < num ; i++)
 	{
-		if(strcmp(ws[i].ID,id)==0)
+        if(strcmp(ws[i].ID,id)==0)
 		{
-		    break;
+            break;
 		}
 	}
-	if( i == num )
+    if( i == num )
 	{
-	    cout<<"不存在此工号的职工,请确认你所输入的工号!!!"<<endl;  
-	    return;
+        cout<<"不存在此工号的职工,请确认你所输入的工号!!!"<<endl;  
+        return;
 	}
 
-	cout<<"是否确认删除：（确认输入1）（取消输入非1）";
-	cin>>code;
+    cout<<"是否确认删除：（确认输入1）（取消输入非1）";
+    cin>>code;
 
     if( code == '1' )
 	{
-	    for(; i < num-1 ;i++)
+        for(; i < num-1 ;i++)
 		{
-	        ws[i]=ws[i+1];
+            ws[i]=ws[i+1];
 		}
 
-	    num=num-1;
-	    cout<<"删除成功!!!!!!"<<endl;
+        num=num-1;
+        cout<<"删除成功!!!!!!"<<endl;
 	}
-	else
+    else
 	{
         cout<<"已取消删除操作!!!!!"<<endl;
 	}
@@ -286,113 +291,113 @@ void add(Worker_Salary ws[],int &num)
     cout<<"请输入新增职工的基本信息：";
     while(true)
 	{
-	    cout<<"请输入职工工号：";
-	    cin>>ws[num].ID;
-		for(i=0;i<num;i++)
+        cout<<"请输入职工工号：";
+        cin>>ws[num].ID;
+        for(i=0;i<num;i++)
 		{
-			if(strcmp(ws[i].ID,ws[num].ID)==0)
+            if(strcmp(ws[i].ID,ws[num].ID)==0)
 			{
-			    cout<<"此工号已经存在，请重新输入"<<endl;
-				break;
+                cout<<"此工号已经存在，请重新输入"<<endl;
+                break;
 			}
 		}
-		if( i == num )
+        if( i == num )
 		{
-			cout<<"请输入职工姓名：";
-			cin>>ws[num].name;
-			cout<<"请输入职工岗位工资：";
-			cin>>ws[num].p_salary;
-			cout<<"请输入职工薪级工资：";
-			cin>>ws[num].p_salary1;
-			cout<<"请输入职工职务津贴：";
-			cin>>ws[num].p_salary2;
-			cout<<"请输入职工绩效工资：";
-			cin>>ws[num].p_salary3;
-			grsds(&ws[num]);
-			num=num+1;
-			cout<<"新增成功！！！"<<endl;
-			break;
+            cout<<"请输入职工姓名：";
+            cin>>ws[num].name;
+            cout<<"请输入职工岗位工资：";
+            cin>>ws[num].p_salary;
+            cout<<"请输入职工薪级工资：";
+            cin>>ws[num].p_salary1;
+            cout<<"请输入职工职务津贴：";
+            cin>>ws[num].p_salary2;
+            cout<<"请输入职工绩效工资：";
+            cin>>ws[num].p_salary3;
+            grsds(&ws[num]);
+            num=num+1;
+            cout<<"新增成功！！！"<<endl;
+            break;
 		}
-		else 
+        else 
 		{
-		    continue;
+            continue;
 		}
 	}
 		 
 		 
 }
 int main(){
-	Worker_Salary zggz[100];
-	int num = read(zggz);   //从文件中读取数据，并返回数据的个数
-	bool key = true;
-	int code;
+    Worker_Salary zggz[100];
+    int num = read(zggz);   //从文件中读取数据，并返回数据的个数
+    bool key = true;
+    int code;
     char gonghao[10];
 
-	while(true)
+    while(true)
 	{
-	    cout<<"请输入你所要操作的代码："<<endl;
-	    cout<<"1.查询--2.修改--3.添加--4.删除--5.保存--6.浏览--7.退出"<<endl;
-	    cin>>code;   //操作代码输入
-	    switch(code)
+        cout<<"请输入你所要操作的代码："<<endl;
+        cout<<"1.查询--2.修改--3.添加--4.删除--5.保存--6.浏览--7.退出"<<endl;
+        cin>>code;   //操作代码输入
+        switch(code)
 		{
-	        case 1:   //查询	       
-	            cout<<"请输入你所查询职工工号："<<endl;
-	            cin>>gonghao;
-	            find(zggz,num,gonghao);
-	            break;
+            case 1:   //查询	       
+                cout<<"请输入你所查询职工工号："<<endl;
+                cin>>gonghao;
+                find(zggz,num,gonghao);
+                break;
 
-	        case 2:  //修改
-	            cout<<"请输入你所修改的职工工号："<<endl;
-	            cin>>gonghao;
-	            modify(zggz,num,gonghao);
-	            key=false;
-	            break;
+            case 2:  //修改
+                cout<<"请输入你所修改的职工工号："<<endl;
+                cin>>gonghao;
+                modify(zggz,num,gonghao);
+                key=false;
+                break;
 
-	        case 3:    //新增
+            case 3:    //新增
                 add(zggz,num);
-	            key=false;
-	            break;
+                key=false;
+                break;
 
-	        case 4:   //删除
-	            cout<<"请输入你所删除的职工工号："<<endl;
-	            cin>>gonghao;
+            case 4:   //删除
+                cout<<"请输入你所删除的职工工号："<<endl;
+                cin>>gonghao;
                 del(zggz,num,gonghao);
-	            key=false;
-	            break;
+                key=false;
+                break;
 
-	        case 5:    //保存
-		        write(zggz,num);
-	    	    key=true;
-	    	    break;
+            case 5:    //保存
+                write(zggz,num);
+                key=true;
+                break;
 
-	        case 6:    //浏览
-		        list(zggz,num);
-	            break;
+            case 6:    //浏览
+                list(zggz,num);
+                break;
 
             case 7:      //退出
-	            if(key)
+                if(key)
 				{
-		            cout<<"退出操作!!!!"<<endl;
-		            return 0;
+                    cout<<"退出操作!!!!"<<endl;
+                    return 0;
 				}
-		        else      //没保存修改后的数据，进行的提示
+                else      //没保存修改后的数据，进行的提示
 				{   
-					char code1;    
-		            cout<<"数据修改，还没有保存文件中！！！"<<endl;
-		            cout<<"不保存请输入1，进行保存重新操作输入非1"<<endl;
-		            cin>>code1;
-		            if( code1 == '1')
+                    char code1;    
+                    cout<<"数据修改，还没有保存文件中！！！"<<endl;
+                    cout<<"不保存请输入1，进行保存重新操作输入非1"<<endl;
+                    cin>>code1;
+                    if( code1 == '1')
 					{
-		                return 0;
+                        return 0;
 					}
-		            else
+                    else
 					{
-		                break;
+                        break;
 					}
 				}
             	
-	        default:
-		    cout<<"你输入的代码不正确！！！"<<endl;
+        default:
+            cout<<"你输入的代码不正确！！！"<<endl;
 		}
 	}
     return 0;
