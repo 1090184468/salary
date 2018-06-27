@@ -74,15 +74,15 @@ int read(Worker_Salary ws[])
         }
         num = num + 1;
     };
-	data_num=num;
-	ws[num].pre=&ws[num-1];
+    data_num=num;
+    ws[num].pre=&ws[num-1];
     ws[num].next=NULL;
 
-	for( int i = 0 ; i < num ; i++ )   //对读取初始数据工号进行排序
+    for( int i = 0 ; i < num ; i++ )   //对读取初始数据工号进行排序
     {
-		for( int j = i + 1; j < num ; j++ )
+        for( int j = i + 1; j < num ; j++ )
         {
-			if(strcmp(ws[i].ID,ws[j].ID)>0)
+            if(strcmp(ws[i].ID,ws[j].ID)>0)
             {
                 Worker_Salary temp;
                 temp=ws[i];
@@ -377,7 +377,7 @@ void add(Worker_Salary ws[],int &num)
             cout<<"请输入职工姓名：";
             cin>>ws[data_num].name;
             cout<<"请输入职工岗位工资：";
-			cin>>ws[data_num].p_salary;
+            cin>>ws[data_num].p_salary;
             cout<<"请输入职工薪级工资：";
             cin>>ws[data_num].p_salary1;
             cout<<"请输入职工职务津贴：";
@@ -466,7 +466,7 @@ int main(){
                     else
                     {
                         break;
-                     }
+                    }
                 }
             	
             default:
