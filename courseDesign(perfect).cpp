@@ -87,13 +87,13 @@ int read(Worker_Salary ws[])
                 temp=ws[i];
 				strcpy(ws[i].ID,ws[j].ID);
                 strcpy(ws[i].name,ws[j].name);
-				ws[i].p_salary=ws[j].p_salary;
+                ws[i].p_salary=ws[j].p_salary;
                 ws[i].p_salary1=ws[j].p_salary1;
                 ws[i].p_salary2=ws[j].p_salary2;
                 ws[i].p_salary3=ws[j].p_salary3;
                 ws[i].s_salary=ws[j].s_salary;
                 ws[i].tax=ws[j].tax;
-				ws[i].real_salary=ws[j].real_salary;
+                ws[i].real_salary=ws[j].real_salary;
                 
                 strcpy(ws[j].ID,temp.ID);
                 strcpy(ws[j].name,temp.name);
@@ -155,11 +155,11 @@ void list(Worker_Salary ws[])
     while((*p).next!=NULL)
     {   
         printf("工号：%s  |  姓名：%s | 岗位工资：%.2f | ",(*p).ID,(*p).name,(*p).p_salary);
-        //cout<<"工号："<<(*p).ID<<"  |  "<<"姓名："<<(*p).name<<"  |  "<<"岗位工资："<<(*p).p_salary<<"  |  ";
         printf("薪级工资：%.2f | \n职务津贴：%.2f | 绩效工资：%.2f | 应发工资：%.2f | \n",(*p).p_salary1,(*p).p_salary2,(*p).p_salary3,(*p).s_salary);
+        printf("个人所得税：%.2f | 实发工资：%.2f\n",(*p).tax,(*p).real_salary);
+        //cout<<"工号："<<(*p).ID<<"  |  "<<"姓名："<<(*p).name<<"  |  "<<"岗位工资："<<(*p).p_salary<<"  |  ";
         /*cout<<"薪级工资："<<(*p).p_salary1<<"  |  "<<'\n'<<"职务津贴："<<(*p).p_salary2<<"  |  ";
         cout<<"绩效工资："<<(*p).p_salary3<<"  |  "<<"应发工资："<<(*p).s_salary<<"  |  "<<'\n';*/
-        printf("个人所得税：%.2f | 实发工资：%.2f\n",(*p).tax,(*p).real_salary);
         /*cout<<"个人所得税："<<(*p).tax<<"  |  "<<"实发工资："<<(*p).real_salary<<"  |"<<endl;
         cout<<"________________________________________________________________________________"<<endl;*/
         printf("_______________________________________________________________________________\n\n");
