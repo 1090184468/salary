@@ -85,7 +85,7 @@ int read(Worker_Salary ws[])
             {
                 Worker_Salary temp;
                 temp=ws[i];
-				strcpy(ws[i].ID,ws[j].ID);
+                strcpy(ws[i].ID,ws[j].ID);
                 strcpy(ws[i].name,ws[j].name);
                 ws[i].p_salary=ws[j].p_salary;
                 ws[i].p_salary1=ws[j].p_salary1;
