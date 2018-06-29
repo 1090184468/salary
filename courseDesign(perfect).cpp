@@ -1,7 +1,7 @@
 /*****************************************************************************
   Copyright (C) , 1988-1999 , 17软件工程.
   Filename: courseDesign.cpp
-  Author:李波鸿    Version:0.3    Date: 2018-6-20
+  Author:李波鸿    Version:1.0    Date: 2018-6-29
   Description:实现全部功能的大模块 只与职工数据文件gz.dat有联系 主程序调用各个函数//模块描述
   Function List: 
       1. read    从文件中读取全部职工数据
@@ -16,6 +16,7 @@
       <author>    <time>     <version >   <desc>
         me        18/6/16    0.1          build this cpp
         me        18/6/16    0.3          modify this cpp
+        me        18/6/29    1.0          perfect this cpp
 *****************************************************************************/
 #include<iostream>
 #include<stdlib.h>
