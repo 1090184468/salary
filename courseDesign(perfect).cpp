@@ -21,6 +21,7 @@
 #include<iostream>
 #include<stdlib.h>
 #include<conio.h>
+#include<stdio.h>
 using namespace std;
 struct Worker_Salary           /*职工各项数据类型*/
 {
@@ -428,17 +429,20 @@ int main(){
                 printf("\t请输入你所查询职工工号：");
                 scanf("%s",gonghao);
                 find(zggz,gonghao);
+                system("pause"); /*不被指示顶上去*/
                 break;
 
             case 2:  //修改
                 printf("\t请输入你所修改的职工工号：");
                 scanf("%s",gonghao);
                 modify(zggz,gonghao);
+                system("pause"); /*不被指示顶上去*/
                 key=false;
                 break;
 
             case 3:    //新增
                 add(zggz,num);
+                system("pause"); /*不被指示顶上去*/
                 key=false;
                 break;
 
@@ -446,17 +450,20 @@ int main(){
                 printf("\t请输入你所删除的职工工号：");
                 scanf("%s",gonghao);
                 del(zggz,num,gonghao);
+                system("pause"); /*不被指示顶上去*/
                 key=false;
                 break;
 
             case 5:    //保存
                 write(zggz);
+                system("pause");/*不被指示顶上去*/
                 key=true;
                 break;
 
             case 6:    //浏览
                 printf("\n");
                 list(zggz);
+                system("pause"); /*不被指示顶上去*/
                 break;
 
             case 7:      //退出
